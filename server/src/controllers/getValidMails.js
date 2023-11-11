@@ -3,7 +3,7 @@ const interProcessingCache = require('../cache/interProcessingCache');
 
 async function getValidMails (afterDate = "2023/11/11") {
     query = "";
-    const latestMails = await fetchMails(afterDate, query);
+    const latestMails = await fetchMails(undefined, query);
     const mailsWithoutReplies = await filterMailsWithoutReplies(latestMails);
 
     const mailsWithoutRepliesProcessable = mailsWithoutReplies.filter(mail => !interProcessingCache.exists(mail.threadId));
